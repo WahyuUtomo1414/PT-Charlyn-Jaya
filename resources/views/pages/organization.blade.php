@@ -16,138 +16,159 @@
         </div>
     </section>
 
-    <!-- 7. Organization Structure Grid -->
-    <section class="py-16 sm:py-24 bg-slate-50">
+    <!-- 7.2 Organization Tree -->
+    <section class="py-24 sm:py-32 bg-slate-50 relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+            aria-hidden="true">
+            <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-secondary to-primary opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+                style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+            </div>
+        </div>
+
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
-            <!-- Direktur Utama -->
-            <div class="flex justify-center mb-16">
-                <div
-                    class="bg-white rounded-3xl p-8 shadow-xl border-t-8 border-primary max-w-sm w-full text-center hover:-translate-y-2 transition-transform duration-300 relative">
-                    <div
-                        class="absolute -top-4 -right-4 bg-secondary text-primary font-bold text-xs px-3 py-1 rounded-full shadow-lg">
-                        Pimpinan</div>
-                    <div
-                        class="w-32 h-32 mx-auto rounded-full bg-slate-200 border-4 border-white shadow-lg overflow-hidden mb-6">
-                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=256&h=256"
-                            alt="Direktur Utama" class="w-full h-full object-cover">
-                    </div>
-                    <h3 class="text-xl font-bold text-primary mb-1">Bpk. Alexander</h3>
-                    <p class="text-sm font-semibold text-secondary uppercase tracking-widest mb-4">Direktur Utama</p>
-                    <div class="flex justify-center gap-3">
-                        <a href="#"
-                            class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 hover:text-primary transition-colors"><i
-                                class="fa-brands fa-linkedin-in"></i></a>
-                        <a href="#"
-                            class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 hover:text-primary transition-colors"><i
-                                class="fa-solid fa-envelope"></i></a>
-                    </div>
-                </div>
+            <div class="text-center mb-16">
+                <!-- Using Primary color text as per theme -->
+                <h2 class="text-4xl font-black tracking-tight text-primary sm:text-5xl text-center">
+                    Struktur Organisasi.
+                </h2>
             </div>
 
-            <!-- Direktur -->
-            <div class="flex justify-center mb-16 relative">
-                <!-- Connector Line Top -->
-                <div class="hidden md:block absolute -top-16 left-1/2 w-0.5 h-16 bg-slate-300"></div>
-                <div
-                    class="bg-white rounded-3xl p-6 shadow-lg border-t-4 border-primary max-w-sm w-full text-center hover:-translate-y-1 transition-transform duration-300">
-                    <div
-                        class="w-24 h-24 mx-auto rounded-full bg-slate-200 border-4 border-white shadow-md overflow-hidden mb-4">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=256&h=256"
-                            alt="Direktur Operasional" class="w-full h-full object-cover">
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900 mb-1">Ibu Sarah Wijaya</h3>
-                    <p class="text-xs font-semibold text-secondary uppercase tracking-widest">Direktur Operasional</p>
-                </div>
-            </div>
+            <div class="relative mx-auto max-w-5xl overflow-x-auto pb-12 pt-4">
+                <div class="min-w-[800px] flex flex-col items-center">
 
-            <!-- Management Level -->
-            <div class="relative">
-                <!-- Connector Line Horizontal & Vertical -->
-                <div class="hidden md:block absolute -top-8 left-1/2 w-0.5 h-8 bg-slate-300 transform -translate-x-1/2">
-                </div>
-                <div class="hidden lg:block absolute -top-8 left-[16.666%] right-[16.666%] h-0.5 bg-slate-300"></div>
-                <div class="hidden md:block lg:hidden absolute -top-8 left-1/4 right-1/4 h-0.5 bg-slate-300"></div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-
-                    <!-- HRD -->
-                    <div
-                        class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md border border-slate-100 text-center relative group">
+                    <!-- Level 1: Direktur Utama -->
+                    <div class="flex flex-col items-center group cursor-default">
                         <div
-                            class="hidden lg:block absolute -top-8 left-1/2 w-0.5 h-8 bg-slate-300 -translate-x-1/2 group-first:hidden group-last:hidden">
+                            class="w-32 h-32 rounded-full border-4 border-red-600 overflow-hidden shadow-lg p-1 bg-white relative z-10 mb-4 group-hover:scale-105 transition-transform">
+                            <!-- Placeholder image, replace src with actual cropped portrait -->
+                            <img src="{{ asset('assets/logo.png') }}" alt="Johanis Semiaputty"
+                                class="w-full h-full object-cover rounded-full bg-slate-100 p-2">
                         </div>
                         <div
-                            class="hidden lg:block absolute -top-8 left-1/2 w-0.5 h-8 bg-slate-300 -translate-x-1/2 group-first:block group-last:block mix-blend-multiply">
+                            class="bg-[#e4cbb4] text-center px-6 py-2 rounded-lg font-bold text-slate-900 shadow-md relative z-10 min-w-[240px]">
+                            <div class="text-sm tracking-wider font-extrabold mb-1">JOHANIS SEMIAPUTTY</div>
+                            <div class="text-[10px] uppercase tracking-widest font-black text-slate-700">DIREKTUR UTAMA
+                            </div>
+                        </div>
+
+                        <!-- Connector down to Direktur -->
+                        <div class="w-0.5 h-10 bg-slate-400"></div>
+                    </div>
+
+                    <!-- Level 2: Direktur -->
+                    <div class="flex flex-col items-center group cursor-default">
+                        <div
+                            class="w-32 h-32 rounded-full border-4 border-red-600 overflow-hidden shadow-lg p-1 bg-white relative z-10 mb-4 group-hover:scale-105 transition-transform">
+                            <img src="{{ asset('assets/logo.png') }}" alt="Siti Rahayu"
+                                class="w-full h-full object-cover rounded-full bg-slate-100 p-2">
                         </div>
                         <div
-                            class="w-20 h-20 mx-auto rounded-full bg-slate-100 overflow-hidden mb-4 border border-slate-200">
-                            <i class="fa-solid fa-user-tie text-4xl text-slate-300 mt-4"></i>
-                        </div>
-                        <h3 class="font-bold text-slate-900 mb-1">Budi Santoso</h3>
-                        <p class="text-xs text-primary font-medium bg-primary/5 py-1 px-3 rounded-full inline-block">HRD
-                            Manager</p>
-                    </div>
-
-                    <!-- HSSE -->
-                    <div
-                        class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md border border-slate-100 text-center relative">
-                        <div class="hidden md:block absolute -top-8 left-1/2 w-0.5 h-8 bg-slate-300 -translate-x-1/2">
-                        </div>
-                        <div
-                            class="w-20 h-20 mx-auto rounded-full bg-slate-100 overflow-hidden mb-4 border border-slate-200">
-                            <i class="fa-solid fa-hard-hat text-4xl text-slate-300 mt-4"></i>
-                        </div>
-                        <h3 class="font-bold text-slate-900 mb-1">Andi Pratama</h3>
-                        <p
-                            class="text-xs text-secondary font-bold bg-secondary/10 text-secondary-dark py-1 px-3 rounded-full inline-block">
-                            HSSE Officer</p>
-                    </div>
-
-                    <!-- Administrasi -->
-                    <div
-                        class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md border border-slate-100 text-center relative">
-                        <div class="hidden md:block absolute -top-8 left-1/2 w-0.5 h-8 bg-slate-300 -translate-x-1/2">
-                        </div>
-                        <div
-                            class="w-20 h-20 mx-auto rounded-full bg-slate-100 overflow-hidden mb-4 border border-slate-200">
-                            <i class="fa-solid fa-file-signature text-4xl text-slate-300 mt-4"></i>
-                        </div>
-                        <h3 class="font-bold text-slate-900 mb-1">Siti Aminah</h3>
-                        <p class="text-xs text-primary font-medium bg-primary/5 py-1 px-3 rounded-full inline-block">
-                            Head of Admin</p>
-                    </div>
-
-                    <!-- Logistik -->
-                    <div
-                        class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md border border-slate-100 text-center relative">
-                        <div class="hidden lg:block absolute -top-8 left-1/2 w-0.5 h-8 bg-slate-300 -translate-x-1/2">
-                        </div>
-                        <div
-                            class="w-20 h-20 mx-auto rounded-full bg-slate-100 overflow-hidden mb-4 border border-slate-200">
-                            <i class="fa-solid fa-boxes-stacked text-4xl text-slate-300 mt-4"></i>
-                        </div>
-                        <h3 class="font-bold text-slate-900 mb-1">Rudi Hartono</h3>
-                        <p class="text-xs text-primary font-medium bg-primary/5 py-1 px-3 rounded-full inline-block">
-                            Logistics Manager</p>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- Field Supervisor -->
-            <div class="mt-16 flex justify-center w-full">
-                <div
-                    class="bg-primary-light rounded-2xl p-6 w-full max-w-2xl text-center shadow-lg relative border-2 border-primary border-dashed">
-                    <div
-                        class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-slate-50 px-4 text-xs font-bold text-slate-500 rounded-full border border-slate-200">
-                        Tim Operasional Lapangan</div>
-                    <div class="flex items-center justify-center gap-4 mt-2">
-                        <i class="fa-solid fa-users text-4xl text-white/50"></i>
-                        <div class="text-left">
-                            <h3 class="font-bold text-white text-lg">Pengawas Lapangan & Tim</h3>
-                            <p class="text-sm text-slate-300">Ratusan tenaga ahli yang tersebar di wilayah proyek.</p>
+                            class="bg-[#e4cbb4] text-center px-6 py-2 rounded-lg font-bold text-slate-900 shadow-md relative z-10 min-w-[240px]">
+                            <div class="text-sm tracking-wider font-extrabold mb-1">SITI RAHAYU</div>
+                            <div class="text-[10px] uppercase tracking-widest font-black text-slate-700">DIREKTUR</div>
                         </div>
                     </div>
+
+                    <!-- Connectors to Level 3 -->
+                    <div class="w-0.5 h-10 bg-slate-400"></div>
+                    <div class="w-full max-w-2xl border-t-2 border-slate-400 flex justify-between relative h-10">
+                        <!-- Left Drop -->
+                        <div class="absolute left-0 top-0 w-0.5 h-10 bg-slate-400 translate-x-[110px]"></div>
+                        <!-- Middle Drop -->
+                        <div class="absolute left-1/2 top-0 w-0.5 h-10 bg-slate-400 -translate-x-1/2"></div>
+                        <!-- Right Drop -->
+                        <div class="absolute right-0 top-0 w-0.5 h-10 bg-slate-400 -translate-x-[110px]"></div>
+                    </div>
+
+                    <!-- Level 3: Managers -->
+                    <div class="flex justify-between w-full max-w-[850px] mb-8">
+
+                        <!-- Left: Pengawas Lapangan -->
+                        <div class="flex flex-col items-center w-1/3 relative z-10 group cursor-default">
+                            <div
+                                class="w-28 h-28 rounded-full border-4 border-red-600 overflow-hidden shadow-md p-1 bg-white mb-4 group-hover:scale-105 transition-transform">
+                                <img src="{{ asset('assets/logo.png') }}" alt="Clive Fendjalang"
+                                    class="w-full h-full object-cover rounded-full bg-slate-100 p-2">
+                            </div>
+                            <div
+                                class="bg-[#e4cbb4] text-center px-4 py-2 rounded-lg font-bold text-slate-900 shadow-md w-[200px]">
+                                <div class="text-xs tracking-wider font-extrabold mb-1 leading-tight">CLIVE FENDJALANG
+                                </div>
+                                <div class="text-[9px] uppercase tracking-widest font-black text-slate-700">PENGAWAS
+                                    LAPANGAN</div>
+                            </div>
+
+                            <!-- Connector down to Logistik -->
+                            <div class="w-0.5 h-10 bg-slate-400"></div>
+
+                            <!-- Level 4 Left: Logistik -->
+                            <div class="flex flex-col items-center mt-0 w-[200px] group cursor-default">
+                                <div
+                                    class="w-24 h-24 rounded-full border-4 border-red-600 overflow-hidden shadow-sm p-1 bg-white mb-3 group-hover:scale-105 transition-transform">
+                                    <img src="{{ asset('assets/logo.png') }}" alt="La Onyong"
+                                        class="w-full h-full object-cover rounded-full bg-slate-100 p-2">
+                                </div>
+                                <div
+                                    class="bg-[#e4cbb4] text-center px-4 py-2 rounded-lg font-bold text-slate-900 shadow-md w-full">
+                                    <div class="text-xs tracking-wider font-extrabold mb-1">LA ONYONG</div>
+                                    <div class="text-[9px] uppercase tracking-widest font-black text-slate-700">LOGISTIK
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Center: HSSE -->
+                        <div class="flex flex-col items-center w-1/3 relative z-10 group cursor-default">
+                            <div
+                                class="w-28 h-28 rounded-full border-4 border-red-600 overflow-hidden shadow-md p-1 bg-white mb-4 group-hover:scale-105 transition-transform">
+                                <img src="{{ asset('assets/logo.png') }}" alt="M. Rafi Nusantara"
+                                    class="w-full h-full object-cover rounded-full bg-slate-100 p-2">
+                            </div>
+                            <div
+                                class="bg-[#e4cbb4] text-center px-4 py-2 rounded-lg font-bold text-slate-900 shadow-md w-[200px]">
+                                <div class="text-xs tracking-wider font-extrabold mb-1 leading-tight">M. RAFI NUSANTARA
+                                </div>
+                                <div class="text-[9px] uppercase tracking-widest font-black text-slate-700">HSSE</div>
+                            </div>
+                        </div>
+
+                        <!-- Right: HRD/Personalia -->
+                        <div class="flex flex-col items-center w-1/3 relative z-10 group cursor-default">
+                            <div
+                                class="w-28 h-28 rounded-full border-4 border-red-600 overflow-hidden shadow-md p-1 bg-white mb-4 group-hover:scale-105 transition-transform">
+                                <img src="{{ asset('assets/logo.png') }}" alt="Aprilia Soffyani"
+                                    class="w-full h-full object-cover rounded-full bg-slate-100 p-2">
+                            </div>
+                            <div
+                                class="bg-[#e4cbb4] text-center px-4 py-2 rounded-lg font-bold text-slate-900 shadow-md w-[200px]">
+                                <div class="text-xs tracking-wider font-extrabold mb-1 leading-tight">APRILIA SOFFYANI
+                                </div>
+                                <div class="text-[9px] uppercase tracking-widest font-black text-slate-700">
+                                    HRD/PERSONALIA</div>
+                            </div>
+
+                            <!-- Connector down to Administrasi -->
+                            <div class="w-0.5 h-10 bg-slate-400"></div>
+
+                            <!-- Level 4 Right: Administrasi -->
+                            <div class="flex flex-col items-center mt-0 w-[200px] group cursor-default">
+                                <div
+                                    class="w-24 h-24 rounded-full border-4 border-red-600 overflow-hidden shadow-sm p-1 bg-white mb-3 group-hover:scale-105 transition-transform">
+                                    <img src="{{ asset('assets/logo.png') }}" alt="Erni Lesilolo"
+                                        class="w-full h-full object-cover rounded-full bg-slate-100 p-2">
+                                </div>
+                                <div
+                                    class="bg-[#e4cbb4] text-center px-4 py-2 rounded-lg font-bold text-slate-900 shadow-md w-full">
+                                    <div class="text-xs tracking-wider font-extrabold mb-1">ERNI LESILOLO</div>
+                                    <div class="text-[9px] uppercase tracking-widest font-black text-slate-700">
+                                        ADMINISTRASI</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
 
