@@ -183,7 +183,7 @@
                         <p class="text-slate-600 mb-6 line-clamp-3">Penyediaan tenaga satuan pengamanan yang tanggap,
                             terlatih, dan bersertifikat untuk menjaga aset dan lingkungan Anda dengan standar
                             operasional yang ketat.</p>
-                        <a href="{{ route('project') }}"
+                        <a href="{{ route('project.show', 'security-service') }}"
                             class="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-secondary transition-colors uppercase tracking-wider">
                             Selengkapnya <i class="fa-solid fa-arrow-right"></i>
                         </a>
@@ -209,7 +209,7 @@
                         <p class="text-slate-600 mb-6 line-clamp-3">Layanan kebersihan profesional dengan tenaga
                             terdidik dan peralatan modern, menciptakan lingkungan yang bersih, sehat, dan nyaman untuk
                             aktivitas Anda.</p>
-                        <a href="{{ route('project') }}"
+                        <a href="{{ route('project.show', 'cleaning-service') }}"
                             class="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-secondary transition-colors uppercase tracking-wider">
                             Selengkapnya <i class="fa-solid fa-arrow-right"></i>
                         </a>
@@ -233,7 +233,7 @@
                         <h3 class="text-2xl font-bold text-primary mb-3">Outsourcing Service</h3>
                         <p class="text-slate-600 mb-6 line-clamp-3">Penyediaan tenaga kerja pendukung operasional yang
                             handal dan profesional, disesuaikan dengan kebutuhan spesifik perusahaan Anda.</p>
-                        <a href="{{ route('project') }}"
+                        <a href="{{ route('project.show', 'outsourcing-service') }}"
                             class="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-secondary transition-colors uppercase tracking-wider">
                             Selengkapnya <i class="fa-solid fa-arrow-right"></i>
                         </a>

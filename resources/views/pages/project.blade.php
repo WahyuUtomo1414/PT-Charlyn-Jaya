@@ -37,6 +37,10 @@
                         <li class="flex gap-2 items-center"><i class="fa-solid fa-check text-secondary text-xs"></i>
                             Event Security</li>
                     </ul>
+                    <a href="{{ route('project.show', 'security-service') }}"
+                        class="mt-6 inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-secondary transition-colors uppercase tracking-wider">
+                        Selengkapnya <i class="fa-solid fa-arrow-right"></i>
+                    </a>
                 </div>
 
                 <div
@@ -56,6 +60,10 @@
                         <li class="flex gap-2 items-center"><i class="fa-solid fa-check text-secondary text-xs"></i>
                             Perawatan Taman (Gardening)</li>
                     </ul>
+                    <a href="{{ route('project.show', 'cleaning-service') }}"
+                        class="mt-6 inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-secondary transition-colors uppercase tracking-wider">
+                        Selengkapnya <i class="fa-solid fa-arrow-right"></i>
+                    </a>
                 </div>
 
                 <div
@@ -75,6 +83,10 @@
                         <li class="flex gap-2 items-center"><i class="fa-solid fa-check text-secondary text-xs"></i>
                             Operator & Teknisi</li>
                     </ul>
+                    <a href="{{ route('project.show', 'outsourcing-service') }}"
+                        class="mt-6 inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-secondary transition-colors uppercase tracking-wider">
+                        Selengkapnya <i class="fa-solid fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
         </div>
