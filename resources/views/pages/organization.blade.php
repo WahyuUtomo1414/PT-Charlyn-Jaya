@@ -2,24 +2,17 @@
     <x-slot name="title">Struktur Organisasi</x-slot>
 
     <!-- 7. Hero Section -->
-    <section class="relative bg-primary pt-32 pb-24 sm:pt-40 sm:pb-32 overflow-hidden isolate">
-        <!-- Background Video -->
-        <div class="absolute inset-0 -z-20">
-            <video class="h-full w-full object-cover" autoplay muted loop playsinline>
-                <source src="{{ asset('assets/Pembuatan_Video_Hero_Section_Website.mp4') }}" type="video/mp4">
-            </video>
-        </div>
-        <!-- Primary Overlay -->
-        <div class="absolute inset-0 -z-10 bg-primary/80"></div>
-        <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-50 h-28"></div>
+    <section
+        class="relative bg-primary pt-32 pb-24 sm:pt-40 sm:pb-32 overflow-hidden isolate border-b-2 border-slate-100">
+        <!-- Subtle Pattern Overlay (Dots) -->
+        <div class="absolute inset-0 -z-10 opacity-20"
+            style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 32px 32px;"></div>
 
         <div class="mx-auto max-w-7xl px-6 lg:px-8 text-center relative z-10">
-            <div class="max-w-3xl mx-auto rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm px-6 py-10">
-                <h1 class="text-4xl font-black tracking-tight text-white mb-6">Struktur <span
-                        class="text-secondary">Organisasi</span></h1>
-                <p class="text-lg text-slate-200 max-w-3xl mx-auto">Sinergi kepemimpinan dan manajemen profesional dari
-                    tim penggerak utama PT. Charlyn Jaya.</p>
-            </div>
+            <h1 class="text-4xl font-black tracking-tight text-white mb-6">Struktur <span
+                    class="text-secondary">Organisasi</span></h1>
+            <p class="text-lg text-slate-300 max-w-3xl mx-auto font-medium">Sinergi kepemimpinan dan manajemen
+                profesional dari tim penggerak utama PT. Charlyn Jaya.</p>
         </div>
     </section>
 
