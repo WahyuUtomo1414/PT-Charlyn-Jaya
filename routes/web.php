@@ -1,19 +1,15 @@
 <?php
 
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrganizationController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('pages.home');
-})->name('home');
+Route::get('/', HomeController::class)->name('home');
 
-Route::get('/tentang-kami', function () {
-    return view('pages.about');
-})->name('about');
+Route::get('/tentang-kami', AboutController::class)->name('about');
 
-Route::get('/struktur-organisasi', function () {
-    return view('pages.organization');
-})->name('organization');
+Route::get('/struktur-organisasi', OrganizationController::class)->name('organization');
 
-Route::get('/project-jasa', function () {
-    return view('pages.project');
-})->name('project');
+Route::get('/project-jasa', ProjectController::class)->name('project');
