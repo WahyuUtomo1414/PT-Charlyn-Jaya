@@ -1,6 +1,17 @@
 <x-layout.app>
     <x-slot name="title">Tentang Kami</x-slot>
 
+    @php
+        $company = $perusahaan ?? null;
+        $heroImage = optional($company)->foto;
+        $heroImageUrl = $heroImage
+            ? (\Illuminate\Support\Str::startsWith($heroImage, ['http://', 'https://'])
+                ? $heroImage
+                : route('private-file', ['path' => ltrim($heroImage, '/')]))
+            : 'https://images.unsplash.com/photo-1574169208507-84376144848b?auto=format&fit=crop&q=80';
+        $misiList = collect(optional($company)->misi ?? []);
+    @endphp
+
     <!-- 6.1 Hero Section -->
     <section
         class="relative bg-primary pt-32 pb-24 sm:pt-40 sm:pb-32 overflow-hidden isolate border-b-2 border-slate-100">
@@ -24,8 +35,9 @@
                 <!-- Sejarah Image / Visual -->
                 <div class="w-full lg:w-1/2 relative">
                     <div class="absolute -inset-4 bg-secondary/10 rounded-3xl -z-10 transform -rotate-3"></div>
-                    <img src="https://images.unsplash.com/photo-1574169208507-84376144848b?auto=format&fit=crop&q=80"
-                        alt="Office PT Charlyn Jaya" class="rounded-2xl shadow-lg w-full object-cover h-[400px]">
+                    <img src="{{ $heroImageUrl }}"
+                        alt="{{ $company->nama ?? 'Office PT Charlyn Jaya' }}"
+                        class="rounded-2xl shadow-lg w-full object-cover h-[400px]">
                     <div class="absolute -bottom-8 -right-8 bg-primary text-white p-8 rounded-2xl shadow-2xl">
                         <div class="text-5xl font-black text-secondary mb-2">15+</div>
                         <div class="font-bold text-sm uppercase tracking-widest">Tahun<br>Pengalaman</div>
@@ -41,18 +53,14 @@
                     <h2 class="text-3xl font-black text-slate-900 mb-6 tracking-tight">Perjalanan Kami Mengabdi</h2>
                     <div class="prose prose-slate lg:prose-lg text-slate-600">
                         <p class="mb-4">
-                            <b>PT. Charlyn Jaya</b> berdiri pada tahun 2005 dengan awal kiprah di bidang konstruksi.
-                            Seiring dengan kebutuhan pasar yang terus berkembang, pada tahun 2015 kami memperluas
-                            jangkauan layanan menuju penyediaan outsourcing tenaga keamanan (Security).
+                            {{ $company->tentang_kami ?? 'PT. Charlyn Jaya berdiri pada tahun 2005 dengan awal kiprah di bidang konstruksi. Seiring kebutuhan pasar yang terus berkembang, pada tahun 2015 kami memperluas jangkauan layanan menuju penyediaan outsourcing tenaga keamanan (Security).' }}
                         </p>
                         <p class="mb-4">
-                            Komitmen kami terhadap pelayanan prima mendorong kami untuk terus berinovasi, sehingga kami
-                            merambah ke bidang outsourcing tenaga kebersihan (Cleaning Service), menjadikannya layanan
-                            yang terintegrasi.
+                            {{ $company->filosofi ?? 'Komitmen terhadap pelayanan prima mendorong kami untuk terus berinovasi, sehingga kami merambah ke bidang outsourcing tenaga kebersihan (Cleaning Service), menjadikannya layanan yang terintegrasi.' }}
                         </p>
                         <blockquote
                             class="border-l-4 border-secondary pl-6 my-8 italic font-semibold text-primary text-xl">
-                            "Menjadi mitra terpercaya dalam menciptakan lingkungan aman dan bersih."
+                            "{{ $company->filosofi ?? 'Menjadi mitra terpercaya dalam menciptakan lingkungan aman dan bersih.' }}"
                         </blockquote>
                         <p>
                             Filosofi kami adalah selalu memprioritaskan kualitas tenaga kerja yang disalurkan, ditunjang
@@ -80,7 +88,7 @@
                     </div>
                     <h2 class="text-3xl font-black mb-6">Visi Kami</h2>
                     <p class="text-xl text-slate-300 leading-relaxed font-medium">
-                        "Menjadi mitra terpercaya dalam penyediaan layanan keamanan dan kebersihan bagi instansi."
+                        "{{ $company->visi ?? 'Menjadi mitra terpercaya dalam penyediaan layanan keamanan dan kebersihan bagi instansi.' }}"
                     </p>
                 </div>
 
@@ -92,28 +100,18 @@
                         <i class="fa-solid fa-rocket text-3xl text-primary"></i>
                     </div>
                     <h2 class="text-3xl font-black mb-6">Misi Kami</h2>
-                    <ul class="space-y-4">
-                        <li class="flex items-start gap-4">
-                            <i class="fa-solid fa-check text-secondary mt-1 text-xl"></i>
-                            <span class="text-slate-300 text-lg">Menyediakan layanan terintegrasi</span>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <i class="fa-solid fa-check text-secondary mt-1 text-xl"></i>
-                            <span class="text-slate-300 text-lg">Penyediaan tenaga profesional dan terlatih</span>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <i class="fa-solid fa-check text-secondary mt-1 text-xl"></i>
-                            <span class="text-slate-300 text-lg">Pendekatan berbasis kebutuhan klien</span>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <i class="fa-solid fa-check text-secondary mt-1 text-xl"></i>
-                            <span class="text-slate-300 text-lg">Mengutamakan kepuasan klien</span>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <i class="fa-solid fa-check text-secondary mt-1 text-xl"></i>
-                            <span class="text-slate-300 text-lg">Melaksanakan tanggung jawab sosial</span>
-                        </li>
-                    </ul>
+                    @if ($misiList->isNotEmpty())
+                        <ul class="space-y-4">
+                            @foreach ($misiList as $misi)
+                                <li class="flex items-start gap-4">
+                                    <i class="fa-solid fa-check text-secondary mt-1 text-xl"></i>
+                                    <span class="text-slate-300 text-lg">{{ $misi }}</span>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @else
+                        <p class="text-slate-300">Belum ada data misi.</p>
+                    @endif
                 </div>
             </div>
         </div>
