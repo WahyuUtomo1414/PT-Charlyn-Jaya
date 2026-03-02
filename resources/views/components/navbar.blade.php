@@ -57,12 +57,12 @@ window.addEventListener('scroll', () => scrolled = window.scrollY > 20)"
         </div>
 
         <!-- CTA Button -->
-        <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+        <div class="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center">
             <a href="{{ route('filament.admin.auth.login') }}"
                 :class="(!scrolled) ? 'bg-white/15 border border-white/20 text-white hover:bg-white/25' :
                 'text-white bg-primary hover:bg-primary-light'"
                 class="inline-flex items-center gap-2 text-sm font-semibold leading-6 px-5 py-2.5 rounded-full transition-all shadow hover:shadow-md transform hover:-translate-y-0.5">
-                Hubungi Kami <i class="fa-solid fa-arrow-right text-secondary text-xs"></i>
+                Buat Penawaran <i class="fa-solid fa-arrow-right text-secondary text-xs"></i>
             </a>
         </div>
     </nav>
@@ -106,7 +106,7 @@ window.addEventListener('scroll', () => scrolled = window.scrollY > 20)"
                     <div class="py-6">
                         <a href="{{ route('filament.admin.auth.login') }}"
                             class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white bg-primary text-center hover:bg-primary-light transition-colors">
-                            Hubungi Kami
+                            Buat Penawaran
                         </a>
                     </div>
                 </div>

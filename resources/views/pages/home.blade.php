@@ -271,7 +271,7 @@
                 </p>
                 <a href="mailto:charlynjaya@gmail.com"
                     class="inline-flex items-center gap-2 text-sm font-bold text-primary bg-secondary px-6 py-3 rounded-full hover:bg-white transition-colors">
-                    Hubungi Support Kami
+                    Hubungi Kami
                 </a>
             </div>
 

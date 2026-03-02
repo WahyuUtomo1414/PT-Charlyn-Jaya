@@ -1,4 +1,14 @@
 <footer class="bg-primary text-white pt-16 pb-8 border-t-[6px] border-secondary">
+    @php
+        $company = $perusahaan ?? null;
+        $socials = collect($company->media_sosial ?? [])
+            ->values();
+        $socialIcons = [
+            'facebook' => 'fa-facebook-f',
+            'instagram' => 'fa-instagram',
+            'linkedin' => 'fa-linkedin-in',
+        ];
+    @endphp
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-12">
 
@@ -17,18 +27,33 @@
                     (Cleaning Service) yang terpercaya di Provinsi Maluku dan sekitarnya.
                 </p>
                 <div class="flex space-x-4">
-                    <a href="#"
-                        class="w-10 h-10 rounded-full bg-primary-light flex items-center justify-center text-slate-300 hover:text-white hover:bg-secondary transition-colors duration-300">
-                        <i class="fa-brands fa-facebook-f"></i>
-                    </a>
-                    <a href="#"
-                        class="w-10 h-10 rounded-full bg-primary-light flex items-center justify-center text-slate-300 hover:text-white hover:bg-secondary transition-colors duration-300">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
-                    <a href="#"
-                        class="w-10 h-10 rounded-full bg-primary-light flex items-center justify-center text-slate-300 hover:text-white hover:bg-secondary transition-colors duration-300">
-                        <i class="fa-brands fa-linkedin-in"></i>
-                    </a>
+                    @forelse ($socials as $social)
+                        @php
+                            $platform = strtolower((string) ($social['platform'] ?? $social['name'] ?? ''));
+                            $icon = $socialIcons[$platform] ?? 'fa-link';
+                            $iconPrefix = isset($socialIcons[$platform]) ? 'fa-brands' : 'fa-solid';
+                            $link = $social['link'] ?? '#';
+                        @endphp
+                        <a href="{{ $link }}"
+                            target="{{ $link !== '#' ? '_blank' : '_self' }}"
+                            rel="{{ $link !== '#' ? 'noopener noreferrer' : '' }}"
+                            class="w-10 h-10 rounded-full bg-primary-light flex items-center justify-center text-slate-300 hover:text-white hover:bg-secondary transition-colors duration-300">
+                            <i class="{{ $iconPrefix }} {{ $icon }}"></i>
+                        </a>
+                    @empty
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-primary-light flex items-center justify-center text-slate-300 hover:text-white hover:bg-secondary transition-colors duration-300">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-primary-light flex items-center justify-center text-slate-300 hover:text-white hover:bg-secondary transition-colors duration-300">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-primary-light flex items-center justify-center text-slate-300 hover:text-white hover:bg-secondary transition-colors duration-300">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                    @endforelse
                 </div>
             </div>
 
@@ -77,7 +102,7 @@
                             <i class="fa-solid fa-map-location-dot"></i>
                         </div>
                         <span class="text-slate-300 text-sm leading-relaxed">
-                            Jl. Raya Pattimura No. 123, Ambon, Provinsi Maluku, 97111
+                            {{ $company->alamat ?? '-' }}
                         </span>
                     </li>
                     <li class="flex items-center gap-4">
@@ -86,7 +111,7 @@
                             <i class="fa-solid fa-phone"></i>
                         </div>
                         <span class="text-slate-300 text-sm">
-                            +62 811 1234 5678
+                            {{ $company->no_wa ?? '-' }}
                         </span>
                     </li>
                     <li class="flex items-center gap-4">
@@ -95,7 +120,7 @@
                             <i class="fa-solid fa-envelope"></i>
                         </div>
                         <span class="text-slate-300 text-sm">
-                            info@charlynjaya.co.id
+                            {{ $company->email ?? '-' }}
                         </span>
                     </li>
                 </ul>
