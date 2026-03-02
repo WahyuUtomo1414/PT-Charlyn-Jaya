@@ -21,7 +21,6 @@ class PerusahaanInfolist
                     ->columnSpanFull(),
                 ImageEntry::make('logo')
                     ->label('Logo')
-                    ->disk('public')
                     ->placeholder('-')
                     ->columnSpanFull(),
                 TextEntry::make('tentang_kami')
@@ -50,7 +49,6 @@ class PerusahaanInfolist
                     ->placeholder('-'),
                 ImageEntry::make('foto')
                     ->label('Foto')
-                    ->disk('public')
                     ->placeholder('-')
                     ->columnSpanFull(),
                 RepeatableEntry::make('media_sosial')
