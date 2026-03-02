@@ -75,22 +75,33 @@
             </p>
             <div
                 class="mx-auto grid max-w-lg grid-cols-2 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-4 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-                <!-- Dummy Clients -->
-                <div class="col-span-1 flex justify-center"><i
-                        class="fa-solid fa-building-columns text-4xl text-slate-400 hover:text-primary transition-colors"></i>
-                </div>
-                <div class="col-span-1 flex justify-center"><i
-                        class="fa-solid fa-hospital text-4xl text-slate-400 hover:text-primary transition-colors"></i>
-                </div>
-                <div class="col-span-1 flex justify-center"><i
-                        class="fa-solid fa-school text-4xl text-slate-400 hover:text-primary transition-colors"></i>
-                </div>
-                <div class="col-span-1 flex justify-center"><i
-                        class="fa-solid fa-industry text-4xl text-slate-400 hover:text-primary transition-colors"></i>
-                </div>
-                <div class="col-span-2 sm:col-span-4 lg:col-span-1 flex justify-center"><i
-                        class="fa-solid fa-building-user text-4xl text-slate-400 hover:text-primary transition-colors"></i>
-                </div>
+                @forelse ($customers as $customer)
+                    <div class="col-span-1 flex justify-center items-center">
+                        @if ($customer->logo)
+                            <img src="{{ \Illuminate\Support\Str::startsWith($customer->logo, ['http://', 'https://']) ? $customer->logo : route('private-file', ['path' => ltrim($customer->logo, '/')]) }}"
+                                alt="{{ $customer->nama }}"
+                                class="h-16 w-auto object-contain transition-all duration-300 hover:scale-105">
+                        @else
+                            <div class="h-12 w-24 rounded-lg border border-slate-200 bg-slate-100"></div>
+                        @endif
+                    </div>
+                @empty
+                    <div class="col-span-1 flex justify-center"><i
+                            class="fa-solid fa-building-columns text-4xl text-slate-400 hover:text-primary transition-colors"></i>
+                    </div>
+                    <div class="col-span-1 flex justify-center"><i
+                            class="fa-solid fa-hospital text-4xl text-slate-400 hover:text-primary transition-colors"></i>
+                    </div>
+                    <div class="col-span-1 flex justify-center"><i
+                            class="fa-solid fa-school text-4xl text-slate-400 hover:text-primary transition-colors"></i>
+                    </div>
+                    <div class="col-span-1 flex justify-center"><i
+                            class="fa-solid fa-industry text-4xl text-slate-400 hover:text-primary transition-colors"></i>
+                    </div>
+                    <div class="col-span-2 sm:col-span-4 lg:col-span-1 flex justify-center"><i
+                            class="fa-solid fa-building-user text-4xl text-slate-400 hover:text-primary transition-colors"></i>
+                    </div>
+                @endforelse
             </div>
         </div>
     </section>

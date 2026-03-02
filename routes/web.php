@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrganizationController;
+use App\Http\Controllers\PrivateFileController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,3 +15,7 @@ Route::get('/struktur-organisasi', OrganizationController::class)->name('organiz
 
 Route::get('/project-jasa', [ProjectController::class, 'index'])->name('project');
 Route::get('/project-jasa/{slug}', [ProjectController::class, 'show'])->name('project.show');
+
+Route::get('/private-file/{path}', PrivateFileController::class)
+    ->where('path', '.*')
+    ->name('private-file');
