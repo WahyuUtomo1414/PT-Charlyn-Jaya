@@ -25,9 +25,9 @@ class UsersTable
                     ->searchable(),
                 TextColumn::make('no_tlpn')
                     ->searchable(),
-                TextColumn::make('email_verified_at')
-                    ->dateTime()
-                    ->sortable(),
+                TextColumn::make('roles.name')
+                    ->badge()
+                    ->separator(','),
                 IconColumn::make('active')
                     ->boolean(),
                 TextColumn::make('createdBy.name')
