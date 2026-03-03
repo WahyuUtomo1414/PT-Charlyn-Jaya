@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Layanan;
+use App\Models\Portofolio;
 use App\Models\Customer;
 use Illuminate\View\View;
 use Illuminate\Support\Str;
@@ -15,8 +16,15 @@ class ProjectController extends Controller
             ->orderBy('id')
             ->get(['id', 'nama', 'deskripsi', 'lingkup_layanan', 'benner', 'icon', 'foto']);
 
+        $portofolios = Portofolio::query()
+            ->with(['customer:id,nama,logo,kategori', 'layanan:id,nama'])
+            ->orderBy('id')
+            ->paginate(15)
+            ->fragment('portofolio');
+
         return view('pages.project', [
             'layanan' => $layanan,
+            'portofolios' => $portofolios,
         ]);
     }
 

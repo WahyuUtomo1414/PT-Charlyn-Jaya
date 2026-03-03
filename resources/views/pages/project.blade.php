@@ -68,7 +68,7 @@
     </section>
 
     <!-- 8.3 Table Pengalaman Project -->
-    <section class="py-24 sm:py-32 bg-slate-50">
+    <section id="portofolio" class="py-24 sm:py-32 bg-slate-50">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-base font-bold leading-7 text-secondary tracking-widest uppercase">Portofolio</h2>
@@ -94,110 +94,68 @@
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-100">
-                            <tr class="hover:bg-slate-50 transition-colors">
-                                <td class="px-6 py-4 font-medium">1</td>
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center gap-3">
-                                        <div
-                                            class="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center text-slate-400">
-                                            <i class="fa-solid fa-building-columns"></i>
-                                        </div>
-                                        <div>
-                                            <div class="font-bold text-slate-900">Kantor Gubernur Maluku</div>
-                                            <div class="text-xs text-slate-500">Pemerintah</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4">Penyediaan Tenaga Kebersihan (Cleaning Service)</td>
-                                <td class="px-6 py-4">2020 - 2021</td>
-                                <td class="px-6 py-4 text-center">
-                                    <span
-                                        class="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-2 py-1 text-xs font-medium text-slate-600">
-                                        Selesai
-                                    </span>
-                                </td>
-                            </tr>
-
-                            <tr class="hover:bg-slate-50 transition-colors">
-                                <td class="px-6 py-4 font-medium">2</td>
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center gap-3">
-                                        <div
-                                            class="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center text-slate-400">
-                                            <i class="fa-solid fa-hospital"></i>
-                                        </div>
-                                        <div>
-                                            <div class="font-bold text-slate-900">RSUD dr. M. Haulussy Ambon</div>
-                                            <div class="text-xs text-slate-500">Kesehatan</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4">Jasa Tenaga Pengamanan (Security) Terpadu</td>
-                                <td class="px-6 py-4">2021 - 2023</td>
-                                <td class="px-6 py-4 text-center">
-                                    <span
-                                        class="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-2 py-1 text-xs font-medium text-slate-600">
-                                        Selesai
-                                    </span>
-                                </td>
-                            </tr>
-
-                            <tr class="hover:bg-slate-50 transition-colors bg-primary/5">
-                                <td class="px-6 py-4 font-medium">3</td>
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center gap-3">
-                                        <div
-                                            class="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center text-slate-400">
-                                            <i class="fa-solid fa-building-user"></i>
-                                        </div>
-                                        <div>
-                                            <div class="font-bold text-slate-900">PT. Pelindo (Persero) Regional 4
-                                                Ambon</div>
-                                            <div class="text-xs text-slate-500">BUMN</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4">Penyediaan Tenaga Kebersihan & Tenaga Outsourcing Administrasi
-                                </td>
-                                <td class="px-6 py-4">2023 - Sekarang</td>
-                                <td class="px-6 py-4 text-center">
-                                    <span
-                                        class="inline-flex items-center gap-1.5 rounded-full bg-secondary/20 px-2 py-1 text-xs font-bold text-secondary-dark border border-secondary/30">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-secondary-dark animate-pulse"></span>
-                                        Berjalan
-                                    </span>
-                                </td>
-                            </tr>
-
-                            <tr class="hover:bg-slate-50 transition-colors bg-primary/5">
-                                <td class="px-6 py-4 font-medium">4</td>
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center gap-3">
-                                        <div
-                                            class="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center text-slate-400">
-                                            <i class="fa-solid fa-plane-departure"></i>
-                                        </div>
-                                        <div>
-                                            <div class="font-bold text-slate-900">Angkasa Pura I (Bandara Pattimura)
+                            @forelse ($portofolios as $item)
+                                @php
+                                    $logo = $item->customer?->logo;
+                                    $logoUrl = $logo
+                                        ? (\Illuminate\Support\Str::startsWith($logo, ['http://', 'https://'])
+                                            ? $logo
+                                            : route('private-file', ['path' => ltrim($logo, '/')]))
+                                        : null;
+                                @endphp
+                                <tr class="hover:bg-slate-50 transition-colors">
+                                    <td class="px-6 py-4 font-medium">{{ $loop->iteration }}</td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-400 overflow-hidden">
+                                                @if ($logoUrl)
+                                                    <img src="{{ $logoUrl }}" alt="{{ $item->customer?->nama }}"
+                                                        class="w-6 h-6 object-contain">
+                                                @else
+                                                    <i class="fa-solid fa-building-columns text-sm"></i>
+                                                @endif
                                             </div>
-                                            <div class="text-xs text-slate-500">BUMN</div>
+                                            <div>
+                                                <div class="font-bold text-slate-900">
+                                                    {{ $item->customer?->nama ?? '-' }}
+                                                </div>
+                                                <div class="text-xs text-slate-500">
+                                                    {{ $item->customer?->kategori ?? '-' }}
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4">Jasa Tenaga Pengamanan (Security) Kawasan</td>
-                                <td class="px-6 py-4">2024 - Sekarang</td>
-                                <td class="px-6 py-4 text-center">
-                                    <span
-                                        class="inline-flex items-center gap-1.5 rounded-full bg-secondary/20 px-2 py-1 text-xs font-bold text-secondary-dark border border-secondary/30">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-secondary-dark animate-pulse"></span>
-                                        Berjalan
-                                    </span>
-                                </td>
-                            </tr>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $item->uraian ?? ($item->layanan?->nama ?? '-') }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $item->tahun_pekerjaan ? \Illuminate\Support\Carbon::parse($item->tahun_pekerjaan)->format('Y') : '-' }}
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        <span
+                                            class="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-2 py-1 text-xs font-medium text-slate-600">
+                                            {{ $item->status_pekerjaan ?? '-' }}
+                                        </span>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td class="px-6 py-6 text-center text-slate-500" colspan="5">
+                                        Data portofolio belum tersedia.
+                                    </td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
             </div>
+
+            @if ($portofolios->hasPages())
+                <div class="mt-8">
+                    {{ $portofolios->onEachSide(1)->links() }}
+                </div>
+            @endif
 
             <div class="mt-8 text-center sm:text-right">
                 <a href="{{ route('filament.admin.auth.login') }}" target="_blank"
