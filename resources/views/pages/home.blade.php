@@ -235,7 +235,8 @@
     </section>
 
     <!-- 5.5 FAQ Section -->
-    <section class="py-24 sm:py-32 bg-primary relative overflow-hidden isolate" x-data="{ activeFAQ: 1 }">
+    <section class="py-24 sm:py-32 bg-primary relative overflow-hidden isolate"
+        x-data="{ activeFAQ: {!! $faqs->isNotEmpty() ? '1' : 'null' !!} }">
         <div class="absolute inset-0 -z-10 opacity-10"
             style="background-image: radial-gradient(#FBBF24 1px, transparent 1px); background-size: 32px 32px;"></div>
 
@@ -249,73 +250,36 @@
                     Temukan jawaban atas pertanyaan yang sering diajukan mengenai layanan kami. Jika ada pertanyaan
                     lain, jangan ragu untuk menghubungi tim kami.
                 </p>
-                <a href="mailto:charlynjaya@gmail.com"
+                <a href="{{ $perusahaan?->email ? 'mailto:' . $perusahaan->email : '#' }}"
                     class="inline-flex items-center gap-2 text-sm font-bold text-primary bg-secondary px-6 py-3 rounded-full hover:bg-white transition-colors">
                     Hubungi Kami
                 </a>
             </div>
 
             <div class="space-y-4">
-                <!-- FAQ 1 -->
-                <div class="bg-primary-light rounded-2xl border border-white/10 overflow-hidden transition-all duration-300"
-                    :class="activeFAQ === 1 ? 'ring-2 ring-secondary' : ''">
-                    <button @click="activeFAQ = activeFAQ === 1 ? null : 1"
-                        class="flex justify-between items-center w-full p-6 text-left">
-                        <span class="text-lg font-bold text-white">Layanan apa saja yang disediakan?</span>
-                        <span
-                            class="ml-6 flex items-center justify-center w-8 h-8 rounded-full bg-white/10 text-secondary transition-transform duration-300"
-                            :class="activeFAQ === 1 ? 'rotate-180' : ''">
-                            <i class="fa-solid fa-chevron-down text-sm"></i>
-                        </span>
-                    </button>
-                    <div x-show="activeFAQ === 1" x-collapse x-cloak>
-                        <div class="px-6 pb-6 text-slate-300">
-                            Kami menyediakan layanan Konstruksi, Security Service (Tenaga Keamanan), dan Cleaning
-                            Service (Tenaga Kebersihan) untuk berbagai jenis instansi baik pemerintah maupun swasta.
+                @forelse ($faqs as $faq)
+                    <div class="bg-primary-light rounded-2xl border border-white/10 overflow-hidden transition-all duration-300"
+                        :class="activeFAQ === {{ $loop->iteration }} ? 'ring-2 ring-secondary' : ''">
+                        <button @click="activeFAQ = activeFAQ === {{ $loop->iteration }} ? null : {{ $loop->iteration }}"
+                            class="flex justify-between items-center w-full p-6 text-left">
+                            <span class="text-lg font-bold text-white">{{ $faq->pertanyaan }}</span>
+                            <span
+                                class="ml-6 flex items-center justify-center w-8 h-8 rounded-full bg-white/10 text-secondary transition-transform duration-300"
+                                :class="activeFAQ === {{ $loop->iteration }} ? 'rotate-180' : ''">
+                                <i class="fa-solid fa-chevron-down text-sm"></i>
+                            </span>
+                        </button>
+                        <div x-show="activeFAQ === {{ $loop->iteration }}" x-collapse x-cloak>
+                            <div class="px-6 pb-6 text-slate-300">
+                                {{ $faq->jawaban }}
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- FAQ 2 -->
-                <div class="bg-primary-light rounded-2xl border border-white/10 overflow-hidden transition-all duration-300"
-                    :class="activeFAQ === 2 ? 'ring-2 ring-secondary' : ''">
-                    <button @click="activeFAQ = activeFAQ === 2 ? null : 2"
-                        class="flex justify-between items-center w-full p-6 text-left">
-                        <span class="text-lg font-bold text-white">Di mana saja area layanan PT. Charlyn Jaya?</span>
-                        <span
-                            class="ml-6 flex items-center justify-center w-8 h-8 rounded-full bg-white/10 text-secondary transition-transform duration-300"
-                            :class="activeFAQ === 2 ? 'rotate-180' : ''">
-                            <i class="fa-solid fa-chevron-down text-sm"></i>
-                        </span>
-                    </button>
-                    <div x-show="activeFAQ === 2" x-collapse x-cloak>
-                        <div class="px-6 pb-6 text-slate-300">
-                            Fokus utama layanan kami berada di wilayah Provinsi Maluku dan sekitarnya. Kami bangga
-                            menjadi mitra lokal terpercaya dengan jaringan yang kuat.
-                        </div>
+                @empty
+                    <div class="rounded-2xl border border-white/10 bg-primary-light p-6 text-slate-300">
+                        Data FAQ belum tersedia.
                     </div>
-                </div>
-
-                <!-- FAQ 3 -->
-                <div class="bg-primary-light rounded-2xl border border-white/10 overflow-hidden transition-all duration-300"
-                    :class="activeFAQ === 3 ? 'ring-2 ring-secondary' : ''">
-                    <button @click="activeFAQ = activeFAQ === 3 ? null : 3"
-                        class="flex justify-between items-center w-full p-6 text-left">
-                        <span class="text-lg font-bold text-white">Bagaimana cara bekerja sama dengan kami?</span>
-                        <span
-                            class="ml-6 flex items-center justify-center w-8 h-8 rounded-full bg-white/10 text-secondary transition-transform duration-300"
-                            :class="activeFAQ === 3 ? 'rotate-180' : ''">
-                            <i class="fa-solid fa-chevron-down text-sm"></i>
-                        </span>
-                    </button>
-                    <div x-show="activeFAQ === 3" x-collapse x-cloak>
-                        <div class="px-6 pb-6 text-slate-300">
-                            Anda dapat menghubungi kami melalui formulir kontak di website ini, mengirimkan email ke
-                            info@charlynjaya.co.id, atau langsung menelepon nomor layanan klien kami untuk mengatur
-                            jadwal diskusi kebutuhan.
-                        </div>
-                    </div>
-                </div>
+                @endforelse
             </div>
         </div>
     </section>

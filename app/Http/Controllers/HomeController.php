@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Faq;
 use App\Models\Layanan;
 use Illuminate\View\View;
 
@@ -20,9 +21,15 @@ class HomeController extends Controller
             ->limit(3)
             ->get(['id', 'nama', 'deskripsi', 'benner', 'icon', 'foto']);
 
+        $faqs = Faq::query()
+            ->orderBy('id')
+            ->limit(3)
+            ->get(['id', 'pertanyaan', 'jawaban']);
+
         return view('pages.home', [
             'customers' => $customers,
             'layanan' => $layanan,
+            'faqs' => $faqs,
         ]);
     }
 }
