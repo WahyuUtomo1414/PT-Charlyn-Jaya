@@ -18,12 +18,12 @@ class PortofoliosTable
     {
         return $table
             ->columns([
-                TextColumn::make('customer.id')
+                TextColumn::make('customer.nama')
                     ->searchable(),
-                TextColumn::make('layanan.id')
+                TextColumn::make('layanan.nama')
                     ->searchable(),
                 TextColumn::make('tahun_pekerjaan')
-                    ->date()
+                    ->date('Y')
                     ->sortable(),
                 TextColumn::make('status_pekerjaan')
                     ->searchable(),

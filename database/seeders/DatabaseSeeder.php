@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             FaqSeeder::class,
             LayananSeeder::class,
             PerusahaanSeeder::class,
+            PortofolioSeeder::class,
         ]);
     }
 }
