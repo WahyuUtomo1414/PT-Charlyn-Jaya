@@ -11,7 +11,7 @@ class HomeController extends Controller
     {
         $customers = Customer::query()
             ->orderBy('id')
-            ->limit(5)
+            ->limit(6)
             ->get(['id', 'nama', 'logo']);
 
         return view('pages.home', [
