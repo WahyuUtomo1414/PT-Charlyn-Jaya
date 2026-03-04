@@ -7,6 +7,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
+use Filament\Actions\Action;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -24,19 +25,11 @@ class PenawaransTable
                     ->searchable(),
                 TextColumn::make('nama_perusahaan')
                     ->searchable(),
-                TextColumn::make('alamat')
-                    ->searchable(),
                 TextColumn::make('tanggal_permintaan')
                     ->date()
                     ->sortable(),
-                TextColumn::make('file')
-                    ->searchable(),
                 TextColumn::make('status')
                     ->searchable(),
-                TextColumn::make('catatan')
-                    ->searchable(),
-                IconColumn::make('active')
-                    ->boolean(),
                 TextColumn::make('createdBy.name')
                     ->label('Created By')
                     ->searchable()
@@ -69,8 +62,14 @@ class PenawaransTable
             ])
             ->recordActions([
                 ViewAction::make(),
+                Action::make('print')
+                    ->label('Print')
+                    ->icon('heroicon-m-printer')
+                    ->visible(fn ($record): bool => $record->status === 'approve')
+                    ->url(fn ($record): string => route('penawaran.print', $record))
+                    ->openUrlInNewTab(),
                 EditAction::make()
-                    ->disabled(fn ($record): bool => $record->status === 'approve'),
+                    ->visible(fn ($record): bool => $record->status !== 'approve'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
