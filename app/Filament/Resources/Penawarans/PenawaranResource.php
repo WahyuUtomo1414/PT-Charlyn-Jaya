@@ -17,6 +17,7 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Auth;
 
 class PenawaranResource extends Resource
 {
@@ -45,6 +46,21 @@ class PenawaranResource extends Resource
         return PenawaransTable::configure($table);
     }
 
+    public static function getEloquentQuery(): Builder
+    {
+        $query = parent::getEloquentQuery()
+            ->withoutGlobalScopes([
+                SoftDeletingScope::class,
+            ]);
+
+        $user = Auth::user();
+        if ($user?->roles()->where('id', 2)->exists()) {
+            $query->where('created_by', $user->id);
+        }
+
+        return $query;
+    }
+
     public static function getRelations(): array
     {
         return [
@@ -64,9 +80,16 @@ class PenawaranResource extends Resource
 
     public static function getRecordRouteBindingEloquentQuery(): Builder
     {
-        return parent::getRecordRouteBindingEloquentQuery()
+        $query = parent::getRecordRouteBindingEloquentQuery()
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
             ]);
+
+        $user = Auth::user();
+        if ($user?->roles()->where('id', 2)->exists()) {
+            $query->where('created_by', $user->id);
+        }
+
+        return $query;
     }
 }

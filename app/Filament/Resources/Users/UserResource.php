@@ -15,6 +15,7 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Auth;
 
 class UserResource extends Resource
 {
@@ -38,6 +39,21 @@ class UserResource extends Resource
         return UsersTable::configure($table);
     }
 
+    public static function getEloquentQuery(): Builder
+    {
+        $query = parent::getEloquentQuery()
+            ->withoutGlobalScopes([
+                SoftDeletingScope::class,
+            ]);
+
+        $user = Auth::user();
+        if ($user?->roles()->where('id', 2)->exists()) {
+            $query->where('id', $user->id);
+        }
+
+        return $query;
+    }
+
     public static function getRelations(): array
     {
         return [
@@ -56,9 +72,16 @@ class UserResource extends Resource
 
     public static function getRecordRouteBindingEloquentQuery(): Builder
     {
-        return parent::getRecordRouteBindingEloquentQuery()
+        $query = parent::getRecordRouteBindingEloquentQuery()
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
             ]);
+
+        $user = Auth::user();
+        if ($user?->roles()->where('id', 2)->exists()) {
+            $query->where('id', $user->id);
+        }
+
+        return $query;
     }
 }

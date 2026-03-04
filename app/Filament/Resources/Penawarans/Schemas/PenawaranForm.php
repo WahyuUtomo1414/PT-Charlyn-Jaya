@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\Penawarans\Schemas;
 
-use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -26,10 +26,11 @@ class PenawaranForm
                 TextInput::make('nama_perusahaan'),
                 Textarea::make('alamat')
                     ->rows(3),
-                DatePicker::make('tanggal_permintaan')
+                DateTimePicker::make('tanggal_permintaan')
                     ->required()
                     ->native(false)
-                    ->format('d-m-Y'),
+                    ->displayFormat('d-m-Y H:i')
+                    ->format('Y-m-d H:i:s'),
                 Textarea::make('deskripsi')
                     ->columnSpanFull(),
                 FileUpload::make('file')
