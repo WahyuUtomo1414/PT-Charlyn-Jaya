@@ -13,6 +13,15 @@ class EditPenawaran extends EditRecord
 {
     protected static string $resource = PenawaranResource::class;
 
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        if (empty($data['status'])) {
+            $data['status'] = $this->record?->status ?? 'pending';
+        }
+
+        return $data;
+    }
+
     protected function authorizeAccess(): void
     {
         parent::authorizeAccess();

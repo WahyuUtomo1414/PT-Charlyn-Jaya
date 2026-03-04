@@ -45,9 +45,11 @@ class PenawaranForm
                         'approve' => 'Approve',
                         'reject' => 'Reject',
                     ])
+                    ->required()
                     ->default('pending')
                     ->visible(fn () => $isAdmin())
-                    ->dehydrated(fn () => true),
+                    ->dehydrated(fn () => true)
+                    ->dehydrateStateUsing(fn ($state) => $state ?? 'pending'),
                 Toggle::make('active')
                     ->visible(fn () => $isAdmin())
                     ->default(true)
