@@ -18,7 +18,8 @@ class SertifikatForm
                 FileUpload::make('foto')
                     ->required()
                     ->image()
-                    ->disk('public'),
+                    ->disk('public')
+                    ->directory('sertifikat'),
                 TextInput::make('jenis'),
                 Toggle::make('active')
                     ->required(),
