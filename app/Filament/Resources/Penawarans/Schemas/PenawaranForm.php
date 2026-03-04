@@ -24,16 +24,19 @@ class PenawaranForm
                     ->searchable()
                     ->preload(),
                 TextInput::make('nama_perusahaan'),
-                Grid::make(2)
-                    ->schema([
-                        Textarea::make('alamat')
-                            ->rows(3),
-                        DatePicker::make('tanggal_permintaan'),
-                    ]),
+                Textarea::make('alamat')
+                    ->rows(3),
+                DatePicker::make('tanggal_permintaan')
+                    ->required()
+                    ->native(false)
+                    ->format('d-m-Y'),
                 Textarea::make('deskripsi')
                     ->columnSpanFull(),
                 FileUpload::make('file')
                     ->directory('penawaran')
+                    ->columnSpanFull(),
+                Textarea::make('catatan')
+                    ->rows(3)
                     ->columnSpanFull(),
                 Select::make('status')
                     ->options([
@@ -44,9 +47,9 @@ class PenawaranForm
                     ->default('pending')
                     ->visible(fn () => $isAdmin())
                     ->dehydrated(fn () => true),
-                TextInput::make('catatan'),
                 Toggle::make('active')
                     ->visible(fn () => $isAdmin())
+                    ->default(true)
                     ->required(),
 
             ]);
