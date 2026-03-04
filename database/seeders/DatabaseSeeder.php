@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
             LayananSeeder::class,
             PerusahaanSeeder::class,
             PortofolioSeeder::class,
+            SertifikatSeeder::class,
+            KaryawanSeeder::class,
         ]);
     }
 }
