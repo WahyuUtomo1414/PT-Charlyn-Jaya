@@ -16,9 +16,13 @@ class PortofolioForm
         return $schema
             ->components([
                 Select::make('customer_id')
-                    ->relationship('customer', 'id'),
+                    ->relationship('customer', 'nama')
+                    ->searchable()
+                    ->preload(),
                 Select::make('layanan_id')
-                    ->relationship('layanan', 'id'),
+                    ->relationship('layanan', 'nama')
+                    ->searchable()
+                    ->preload(),
                 Textarea::make('uraian')
                     ->columnSpanFull(),
                 DatePicker::make('tahun_pekerjaan'),

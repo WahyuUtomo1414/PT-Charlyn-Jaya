@@ -8,6 +8,7 @@ use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
@@ -22,15 +23,15 @@ class PerusahaansTable
                     ->searchable(),
                 TextColumn::make('alamat')
                     ->searchable(),
-                TextColumn::make('logo')
-                    ->searchable(),
+                ImageColumn::make('logo')
+                    ->disk('public'),
                 TextColumn::make('email')
                     ->label('Email address')
                     ->searchable(),
                 TextColumn::make('no_wa')
                     ->searchable(),
-                TextColumn::make('foto')
-                    ->searchable(),
+                ImageColumn::make('foto')
+                    ->disk('public'),
                 IconColumn::make('active')
                     ->boolean(),
                 TextColumn::make('createdBy.name')

@@ -19,7 +19,8 @@ class PenawaransTable
     {
         return $table
             ->columns([
-                TextColumn::make('layanan.id')
+                TextColumn::make('layanan.nama')
+                    ->label('Layanan')
                     ->searchable(),
                 TextColumn::make('nama_perusahaan')
                     ->searchable(),

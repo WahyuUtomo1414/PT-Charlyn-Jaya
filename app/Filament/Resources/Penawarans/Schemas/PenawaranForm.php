@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Penawarans\Schemas;
 
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
@@ -16,13 +17,17 @@ class PenawaranForm
         return $schema
             ->components([
                 Select::make('layanan_id')
-                    ->relationship('layanan', 'id'),
+                    ->relationship('layanan', 'nama')
+                    ->searchable()
+                    ->preload(),
                 TextInput::make('nama_perusahaan'),
                 TextInput::make('alamat'),
                 Textarea::make('deskripsi')
                     ->columnSpanFull(),
                 DatePicker::make('tanggal_permintaan'),
-                TextInput::make('file'),
+                FileUpload::make('file')
+                    ->directory('penawaran')
+                    ->columnSpanFull(),
                 TextInput::make('status'),
                 TextInput::make('catatan'),
                 Toggle::make('active')
