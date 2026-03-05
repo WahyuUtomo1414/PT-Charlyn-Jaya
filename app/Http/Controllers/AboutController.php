@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Perusahaan;
 use App\Models\Sertifikat;
 use Illuminate\View\View;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class AboutController extends Controller
@@ -35,10 +34,8 @@ class AboutController extends Controller
                 if ($foto) {
                     if (Str::startsWith($foto, ['http://', 'https://'])) {
                         $fotoUrl = $foto;
-                    } elseif (Str::startsWith($foto, ['storage/', '/storage/'])) {
-                        $fotoUrl = asset(ltrim($foto, '/'));
                     } else {
-                        $fotoUrl = Storage::disk('public')->url($foto);
+                        $fotoUrl = route('private-file', ['path' => ltrim($foto, '/')]);
                     }
                 }
 
