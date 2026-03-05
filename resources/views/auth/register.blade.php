@@ -2,13 +2,13 @@
     <x-slot name="title">Register</x-slot>
 
     <!-- Hero Section -->
-    <section class="relative bg-primary pt-48 pb-16 overflow-hidden isolate border-b-2 border-slate-100">
+    <section class="relative bg-primary pt-32 pb-24 sm:pt-40 sm:pb-32 overflow-hidden isolate border-b-2 border-slate-100">
         <div class="absolute inset-0 -z-10 opacity-20"
             style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 32px 32px;"></div>
         <div class="mx-auto max-w-7xl px-6 lg:px-8 text-center relative z-10">
-            <h1 class="text-4xl font-black tracking-tight text-white mb-4">Daftar <span class="text-secondary">Akun</span>
+            <h1 class="text-4xl font-black tracking-tight text-white mb-6">Daftar <span class="text-secondary">Akun</span>
             </h1>
-            <p class="text-lg text-slate-300 max-w-2xl mx-auto font-medium">Buat akun agar Anda dapat mulai mengajukan
+            <p class="text-lg text-slate-300 max-w-3xl mx-auto font-medium">Buat akun agar Anda dapat mulai mengajukan
                 penawaran.</p>
         </div>
     </section>
