@@ -270,15 +270,91 @@ Data diambil dari company profile PDF.
 
 # 9. KEBUTUHAN FUNGSIONAL
 
-| ID    | Requirement                            |
-| ----- | -------------------------------------- |
-| FR-01 | User dapat melihat halaman home        |
-| FR-02 | User dapat melihat tentang kami        |
-| FR-03 | User dapat melihat struktur organisasi |
-| FR-04 | User dapat melihat project dan jasa    |
-| FR-05 | User dapat melihat sertifikat          |
-| FR-06 | User dapat melihat pengalaman project  |
-| FR-07 | Website responsive                     |
+| ID    | Requirement                                                                                                              |
+| ----- | ------------------------------------------------------------------------------------------------------------------------ |
+| FR-01 | User dapat melihat halaman home                                                                                          |
+| FR-02 | User dapat melihat tentang kami                                                                                          |
+| FR-03 | User dapat melihat struktur organisasi                                                                                   |
+| FR-04 | User dapat melihat project dan jasa                                                                                      |
+| FR-05 | User dapat melihat sertifikat                                                                                            |
+| FR-06 | User dapat melihat pengalaman project                                                                                    |
+| FR-07 | Website responsive                                                                                                       |
+| FR-08 | Tersedia halaman login dan register frontend menggunakan Tailwind (bukan Filament) |
+| FR-09 | Login panel Filament tetap tersedia di path `/admin/login` |
+| FR-10 | Akses panel Filament (`/admin/*`) hanya untuk role `super-admin` |
+| FR-11 | Role `customer` tidak dapat mengakses panel Filament dan diarahkan ke halaman customer (Tailwind) |
+| FR-12 | Setelah login dari frontend, role `super-admin` diarahkan ke dashboard Filament (`/admin`) |
+| FR-13 | Setelah login dari frontend, role `customer` diarahkan ke halaman buat penawaran berbasis Tailwind |
+| FR-14 | Form penawaran (Tailwind) memiliki input yang sama seperti `app/Filament/Resources/Penawarans/Schemas/PenawaranForm.php` |
+| FR-15 | Tersedia halaman monitoring penawaran untuk customer berbasis Tailwind dalam bentuk table list |
+| FR-16 | Status penawaran pada halaman monitoring customer bersifat read-only (diubah oleh admin di Filament) |
+
+---
+
+## 9.1 Detail Autentikasi dan Otorisasi
+
+### Role dan Hak Akses
+
+| Role        | Akses Utama                                            |
+| ----------- | ------------------------------------------------------ |
+| super-admin | Panel Filament (`/admin/*`) dan seluruh fitur backend  |
+| customer    | Halaman frontend Tailwind (buat penawaran + monitoring) |
+
+### Rules Akses
+
+- Filament hanya berjalan pada prefix `/admin`.
+- User `customer` yang mencoba akses `/admin/*` harus ditolak (403) atau diarahkan ke halaman customer.
+- Halaman login/register frontend tetap terpisah dari login Filament.
+
+### Alur Redirect Login
+
+- Login frontend:
+- `super-admin` -> `/admin`
+- `customer` -> halaman penawaran customer (Tailwind)
+- Login Filament (`/admin/login`):
+- hanya `super-admin` yang boleh lanjut ke dashboard Filament
+
+---
+
+## 9.2 Detail Halaman Customer (Tailwind)
+
+### Halaman Buat Penawaran
+
+Input form mengikuti schema pada `app/Filament/Resources/Penawarans/Schemas/PenawaranForm.php`:
+
+- `layanan_id`
+- `nama_perusahaan`
+- `alamat`
+- `tanggal_permintaan`
+- `deskripsi`
+- `file`
+- `catatan`
+
+Catatan role:
+
+- Field `status` dan `active` tidak ditampilkan untuk `customer`.
+- `status` default `pending` saat submit dari customer.
+
+### Halaman Monitoring Penawaran
+
+Tipe halaman:
+
+- Table list berbasis Tailwind untuk menampilkan daftar penawaran milik customer yang login.
+
+Kolom minimum:
+
+- No / ID
+- Layanan
+- Nama Perusahaan
+- Tanggal Permintaan
+- Status (`pending`, `approve`, `reject`)
+- Updated At
+
+Behavior:
+
+- Customer hanya dapat melihat data miliknya sendiri.
+- Customer tidak dapat mengubah status dari halaman ini.
+- Perubahan status dilakukan oleh `super-admin` melalui Filament.
 
 ---
 
