@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Pos\Pages;
 
 use App\Filament\Resources\Pos\PoResource;
+use Filament\Actions\Action;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\ForceDeleteAction;
 use Filament\Actions\RestoreAction;
@@ -35,6 +36,12 @@ class EditPo extends EditRecord
     {
         return [
             ViewAction::make(),
+            Action::make('print')
+                ->label('Print')
+                ->icon('heroicon-o-printer')
+                ->url(fn () => route('po.print', $this->record))
+                ->openUrlInNewTab()
+                ->color('success'),
             // DeleteAction::make()
             //     ->visible(fn (): bool => $this->record?->status !== 'approve'),
             // ForceDeleteAction::make()

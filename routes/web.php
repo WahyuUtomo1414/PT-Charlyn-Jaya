@@ -17,6 +17,7 @@ Route::get('/tentang-kami', AboutController::class)->name('about');
 Route::get('/struktur-organisasi', OrganizationController::class)->name('organization');
 
 Route::get('/penawaran/{penawaran}/print', PenawaranPrintController::class)->name('penawaran.print');
+Route::get('/po/{po}/print', \App\Http\Controllers\PoPrintController::class)->name('po.print');
 
 Route::get('/project-jasa', [ProjectController::class, 'index'])->name('project');
 Route::get('/project-jasa/{slug}', [ProjectController::class, 'show'])->name('project.show');

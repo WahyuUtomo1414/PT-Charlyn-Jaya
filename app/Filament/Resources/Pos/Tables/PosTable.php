@@ -2,12 +2,13 @@
 
 namespace App\Filament\Resources\Pos\Tables;
 
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
-use Filament\Actions\ForceDeleteBulkAction;
-use Filament\Actions\RestoreBulkAction;
-use Filament\Actions\ViewAction;
+use Filament\Tables\Actions\Action;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ForceDeleteBulkAction;
+use Filament\Tables\Actions\RestoreBulkAction;
+use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
@@ -50,6 +51,12 @@ class PosTable
                 ViewAction::make(),
                 EditAction::make()
                     ->visible(fn ($record): bool => $record->status !== 'approve'),
+                Action::make('print')
+                    ->label('Print')
+                    ->icon('heroicon-o-printer')
+                    ->url(fn ($record) => route('po.print', $record))
+                    ->openUrlInNewTab()
+                    ->color('success'),
             ])
             ->bulkActions([
                 // BulkActionGroup::make([

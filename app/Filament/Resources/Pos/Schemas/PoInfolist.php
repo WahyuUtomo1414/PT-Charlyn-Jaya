@@ -39,6 +39,14 @@ class PoInfolist
                             ->label('Catatan')
                             ->columnSpanFull()
                             ->placeholder('-'),
+                        TextEntry::make('print')
+                            ->label('Print Dokumen')
+                            ->getStateUsing(fn() => 'Cetak PDF')
+                            ->url(fn ($record) => route('po.print', $record))
+                            ->openUrlInNewTab()
+                            ->icon('heroicon-o-printer')
+                            ->color('success')
+                            ->placeholder('-'),
                     ])->columnSpanFull(),
 
                 Section::make('Audit Trail')

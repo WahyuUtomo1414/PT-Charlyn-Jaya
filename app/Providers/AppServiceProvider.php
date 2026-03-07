@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Po;
+use App\Observers\PoObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +21,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Po::observe(PoObserver::class);
     }
 }
