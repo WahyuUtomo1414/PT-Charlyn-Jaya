@@ -2,9 +2,9 @@
 
 namespace App\Providers\Filament;
 
-use Filament\Http\Middleware\Authenticate;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use App\Filament\Auth\Pages\Register as CustomRegister;
+use App\Http\Middleware\AuthenticateFilamentAdmin;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -67,7 +67,7 @@ class AdminPanelProvider extends PanelProvider
                 FilamentShieldPlugin::make(),
             ])
             ->authMiddleware([
-                Authenticate::class,
+                AuthenticateFilamentAdmin::class,
             ]);
     }
 }
