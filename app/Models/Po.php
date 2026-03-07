@@ -6,22 +6,16 @@ use App\Traits\AuditedBySoftDelete;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Penawaran extends Model
+class Po extends Model
 {
     use SoftDeletes, AuditedBySoftDelete;
 
-    protected $table = 'penawaran';
+    protected $table = 'po';
     protected $guarded = ['id'];
 
-    public function layanan(): BelongsTo
+    public function penawaran(): BelongsTo
     {
-        return $this->belongsTo(Layanan::class);
-    }
-
-    public function po(): HasOne
-    {
-        return $this->hasOne(Po::class);
+        return $this->belongsTo(Penawaran::class);
     }
 }
