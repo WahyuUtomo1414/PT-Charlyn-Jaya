@@ -39,7 +39,7 @@ class PoInfolist
                             ->label('Catatan')
                             ->columnSpanFull()
                             ->placeholder('-'),
-                    ]),
+                    ])->columnSpanFull(),
 
                 Section::make('Audit Trail')
                     ->columns(2)

@@ -52,16 +52,16 @@ class PosTable
                     ->visible(fn ($record): bool => $record->status !== 'approve'),
             ])
             ->bulkActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make()
-                        ->action(function ($records): void {
-                            $records
-                                ->reject(fn ($record) => $record->status === 'approve')
-                                ->each->delete();
-                        }),
-                    ForceDeleteBulkAction::make(),
-                    RestoreBulkAction::make(),
-                ]),
+                // BulkActionGroup::make([
+                //     DeleteBulkAction::make()
+                //         ->action(function ($records): void {
+                //             $records
+                //                 ->reject(fn ($record) => $record->status === 'approve')
+                //                 ->each->delete();
+                //         }),
+                //     ForceDeleteBulkAction::make(),
+                //     RestoreBulkAction::make(),
+                // ]),
             ]);
     }
 }

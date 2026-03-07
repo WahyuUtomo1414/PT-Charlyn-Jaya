@@ -17,18 +17,18 @@ class PoForm
 
         return $schema
             ->components([
-                Select::make('penawaran_id')
-                    ->relationship('penawaran', 'nama_perusahaan')
-                    ->searchable()
-                    ->preload()
-                    ->required(),
-                TextInput::make('no_po')
-                    ->required()
-                    ->maxLength(50),
-                FileUpload::make('file_po')
-                    ->directory('po')
-                    ->required()
-                    ->columnSpanFull(),
+                // Select::make('penawaran_id')
+                //     ->relationship('penawaran', 'nama_perusahaan')
+                //     ->searchable()
+                //     ->preload()
+                //     ->required(),
+                // TextInput::make('no_po')
+                //     ->required()
+                //     ->maxLength(50),
+                // FileUpload::make('file_po')
+                //     ->directory('po')
+                //     ->required()
+                //     ->columnSpanFull(),
                 Textarea::make('catatan')
                     ->rows(3)
                     ->maxLength(1000)

@@ -25,7 +25,7 @@ class PoResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-document-check';
 
-    protected static string | UnitEnum | null $navigationGroup = 'Leads Customer';
+    protected static string | UnitEnum | null $navigationGroup = 'List Data PO';
 
     protected static ?string $navigationLabel = 'Po';
 

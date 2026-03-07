@@ -35,12 +35,12 @@ class EditPo extends EditRecord
     {
         return [
             ViewAction::make(),
-            DeleteAction::make()
-                ->visible(fn (): bool => $this->record?->status !== 'approve'),
-            ForceDeleteAction::make()
-                ->visible(fn (): bool => $this->record?->status !== 'approve'),
-            RestoreAction::make()
-                ->visible(fn (): bool => $this->record?->status !== 'approve'),
+            // DeleteAction::make()
+            //     ->visible(fn (): bool => $this->record?->status !== 'approve'),
+            // ForceDeleteAction::make()
+            //     ->visible(fn (): bool => $this->record?->status !== 'approve'),
+            // RestoreAction::make()
+            //     ->visible(fn (): bool => $this->record?->status !== 'approve'),
         ];
     }
 }
