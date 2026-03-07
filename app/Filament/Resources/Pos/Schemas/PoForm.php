@@ -15,7 +15,7 @@ class PoForm
 {
     public static function configure(Schema $schema): Schema
     {
-        $isAdmin = fn (): bool => auth()->user()?->roles()->where('id', 1)->exists() ?? false;
+        //$isAdmin = fn (): bool => auth()->user()?->roles()->where('id', 1)->exists() ?? false;
 
         return $schema
             ->components([
@@ -44,11 +44,11 @@ class PoForm
                     ])
                     ->required()
                     ->default('pending')
-                    ->visible(fn () => $isAdmin())
+                    //->visible(fn () => $isAdmin())
                     ->dehydrated(fn () => true)
                     ->dehydrateStateUsing(fn ($state) => $state ?? 'pending'),
                 Toggle::make('active')
-                    ->visible(fn () => $isAdmin())
+                    //->visible(fn () => $isAdmin())
                     ->default(true)
                     ->required(),
                 

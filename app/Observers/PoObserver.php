@@ -13,11 +13,11 @@ class PoObserver
      */
     public function updated(Po $po): void
     {
-        if ($po->isDirty('status') && $po->status === 'approve') {
+        if ($po->wasChanged('status') && $po->status === 'approve') {
             $user = $po->createdBy;
 
             if ($user && $user->email) {
-                Mail::to($user->email)->send(new PoApprovedMail($po));
+                Mail::to($user->email)->queue(new PoApprovedMail($po));
             }
         }
     }

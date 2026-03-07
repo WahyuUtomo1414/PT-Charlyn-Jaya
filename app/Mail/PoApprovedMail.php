@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use App\Models\Po;
+use App\Models\Perusahaan;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -15,6 +16,7 @@ class PoApprovedMail extends Mailable implements ShouldQueue
     use Queueable, SerializesModels;
 
     public $po;
+    public $perusahaan;
 
     /**
      * Create a new message instance.
@@ -22,6 +24,9 @@ class PoApprovedMail extends Mailable implements ShouldQueue
     public function __construct(Po $po)
     {
         $this->po = $po;
+        $this->perusahaan = Perusahaan::query()
+            ->orderBy('id')
+            ->first(['nama', 'alamat', 'email', 'no_wa', 'logo']);
     }
 
     /**

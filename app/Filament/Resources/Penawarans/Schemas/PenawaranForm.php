@@ -16,7 +16,7 @@ class PenawaranForm
 {
     public static function configure(Schema $schema): Schema
     {
-        $isAdmin = fn (): bool => auth()->user()?->roles()->where('id', 1)->exists() ?? false;
+        //$isAdmin = fn (): bool => auth()->user()?->roles()->where('id', 1)->exists() ?? false;
 
         return $schema
             ->components([
@@ -59,7 +59,7 @@ class PenawaranForm
                 //     ])->columnSpanFull(),
 
                 Section::make('Proses Admin')
-                    ->visible(fn () => $isAdmin())
+                    //->visible(fn () => $isAdmin())
                     ->schema([
                         FileUpload::make('file_penawaran')
                             ->label('Upload File Penawaran (Admin)')
