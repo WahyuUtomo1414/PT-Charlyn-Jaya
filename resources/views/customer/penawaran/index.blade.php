@@ -79,15 +79,10 @@
                                                 class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800">
                                                 <i class="fa-solid fa-clock opacity-70"></i> Pending
                                             </span>
-                                        @elseif($penawaran->status === 'approve')
+                                        @elseif($penawaran->status === 'po')
                                             <span
                                                 class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800">
-                                                <i class="fa-solid fa-check-circle opacity-70"></i> Approve
-                                            </span>
-                                        @elseif($penawaran->status === 'reject')
-                                            <span
-                                                class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-red-100 text-red-800">
-                                                <i class="fa-solid fa-times-circle opacity-70"></i> Reject
+                                                <i class="fa-solid fa-file-invoice opacity-70"></i> PO
                                             </span>
                                         @else
                                             <span
@@ -102,10 +97,16 @@
                                                 class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors text-xs font-bold">
                                                 <i class="fa-solid fa-eye"></i> Detail
                                             </a>
-                                            @if ($penawaran->status === 'approve')
-                                                <a href="{{ route('penawaran.print', $penawaran->id) }}" target="_blank"
-                                                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-50 text-blue-700 hover:bg-blue-100 transition-colors text-xs font-bold">
-                                                    <i class="fa-solid fa-print"></i> Print
+                                            @if ($penawaran->status === 'po')
+                                                @if ($penawaran->file_penawaran)
+                                                    <a href="{{ asset('storage/' . $penawaran->file_penawaran) }}" target="_blank"
+                                                        class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-50 text-indigo-700 hover:bg-indigo-100 transition-colors text-xs font-bold">
+                                                        <i class="fa-solid fa-file-pdf"></i> Lihat Penawaran
+                                                    </a>
+                                                @endif
+                                                <a href="{{ route('po.create', ['penawaran_id' => $penawaran->id]) }}"
+                                                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-green-50 text-green-700 hover:bg-green-100 transition-colors text-xs font-bold">
+                                                    <i class="fa-solid fa-plus-circle"></i> Buat PO
                                                 </a>
                                             @endif
                                         </div>

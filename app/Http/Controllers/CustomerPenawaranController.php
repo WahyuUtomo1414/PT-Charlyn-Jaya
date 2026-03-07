@@ -40,8 +40,10 @@ class CustomerPenawaranController extends Controller
             'nama_perusahaan' => 'nullable|string|max:255',
             'alamat' => 'nullable|string',
             'tanggal_permintaan' => 'required|date_format:Y-m-d',
+            'quantity' => 'required|integer|min:1',
+            'deadline_pengerjaan' => 'required|date_format:Y-m-d',
             'deskripsi' => 'nullable|string',
-            'file' => 'nullable|file|mimes:pdf,doc,docx,jpg,jpeg,png',
+            'file' => 'nullable|file|mimes:pdf,doc,docx,jpg,jpeg,png|max:2048',
             'catatan' => 'nullable|string',
         ]);
 
@@ -53,10 +55,11 @@ class CustomerPenawaranController extends Controller
         $penawaran->tanggal_permintaan = Carbon::createFromFormat('Y-m-d', $validated['tanggal_permintaan'])
             ->setTimeFromTimeString($defaultTime)
             ->format('Y-m-d H:i:s');
+        $penawaran->quantity = $validated['quantity'];
+        $penawaran->deadline_pengerjaan = $validated['deadline_pengerjaan'];
         $penawaran->deskripsi = $validated['deskripsi'] ?? null;
         $penawaran->catatan = $validated['catatan'] ?? null;
         $penawaran->status = 'pending';
-        // Active status is not for customer and is handled by filament default, or we can set it here:
         $penawaran->active = 1;
 
         if ($request->hasFile('file')) {

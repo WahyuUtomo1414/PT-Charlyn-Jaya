@@ -2,7 +2,8 @@
     <x-slot name="title">Buat Penawaran</x-slot>
 
     <!-- Hero Section -->
-    <section class="relative bg-primary pt-32 pb-24 sm:pt-40 sm:pb-32 overflow-hidden isolate border-b-2 border-slate-100">
+    <section
+        class="relative bg-primary pt-32 pb-24 sm:pt-40 sm:pb-32 overflow-hidden isolate border-b-2 border-slate-100">
         <div class="absolute inset-0 -z-10 opacity-20"
             style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 32px 32px;"></div>
         <div class="mx-auto max-w-7xl px-6 lg:px-8 text-center relative z-10">
@@ -24,7 +25,7 @@
             }
         }
     }">
-        <div class="max-w-2xl mx-auto align-top">
+        <div class="max-w-4xl mx-auto align-top">
 
             <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
                 <div class="mb-8 border-b border-slate-100 pb-6">
@@ -48,6 +49,7 @@
                     @csrf
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Baris 1: Layanan (Full) -->
                         <div class="col-span-1 md:col-span-2">
                             <label for="layanan_id" class="block text-sm font-bold text-slate-700 mb-2">Layanan <span
                                     class="text-red-500">*</span></label>
@@ -63,7 +65,8 @@
                             </select>
                         </div>
 
-                        <div>
+                        <!-- Baris 2: Nama Perusahaan (Full) -->
+                        <div class="col-span-1 md:col-span-2">
                             <label for="nama_perusahaan" class="block text-sm font-bold text-slate-700 mb-2">Nama
                                 Perusahaan (Optional)</label>
                             <input type="text" id="nama_perusahaan" name="nama_perusahaan"
@@ -72,6 +75,7 @@
                                 placeholder="PT. Contoh Perusahaan">
                         </div>
 
+                        <!-- Baris 3: Tanggal Permintaan (Kiri) & Deadline (Kanan) -->
                         <div>
                             <label for="tanggal_permintaan" class="block text-sm font-bold text-slate-700 mb-2">Tanggal
                                 Permintaan <span class="text-red-500">*</span></label>
@@ -80,10 +84,56 @@
                                 class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-secondary focus:border-secondary transition-colors text-slate-700">
                         </div>
 
+                        <div>
+                            <label for="deadline_pengerjaan"
+                                class="block text-sm font-bold text-slate-700 mb-2">Deadline
+                                Pengerjaan <span class="text-red-500">*</span></label>
+                            <input type="date" id="deadline_pengerjaan" name="deadline_pengerjaan"
+                                value="{{ old('deadline_pengerjaan') }}" required
+                                class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-secondary focus:border-secondary transition-colors text-slate-700">
+                        </div>
+
+                        <!-- Baris 4: Quantity (Kiri) & File (Kanan) -->
+                        <div>
+                            <label for="quantity" class="block text-sm font-bold text-slate-700 mb-2">Quantity <span
+                                    class="text-red-500">*</span>(Orang)</label>
+                            <input type="number" id="quantity" name="quantity" value="{{ old('quantity') }}" required
+                                min="1"
+                                class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-secondary focus:border-secondary transition-colors text-slate-700"
+                                placeholder="Jumlah unit/item">
+                        </div>
+
+                        <div x-data="{ maxFileSize: 2 * 1024 * 1024 }">
+                            <label for="file" class="block text-sm font-bold text-slate-700 mb-2">File Lampiran
+                                (Opsional)</label>
+                            <div class="flex items-center gap-2">
+                                <input type="file" id="file" name="file"
+                                    accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+                                    @change="
+                                        const file = $event.target.files[0];
+                                        if (file && file.size > maxFileSize) {
+                                            alert('Ukuran file maksimal 2 MB.');
+                                            $event.target.value = '';
+                                            fileUrl = null;
+                                            return;
+                                        }
+                                        handleFile($event);
+                                    "
+                                    class="w-full px-3 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-secondary focus:border-secondary transition-colors text-slate-700 text-sm file:mr-2 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-primary/5 file:text-primary hover:file:bg-primary/10">
+
+                                <a x-show="fileUrl" :href="fileUrl" target="_blank"
+                                    class="flex-shrink-0 p-2.5 bg-primary hover:bg-primary-light text-white rounded-xl font-bold transition-colors text-xs">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+                            </div>
+                            <p class="mt-2 text-xs text-slate-500">Format: PDF, DOC, DOCX, JPG, JPEG, PNG. Maksimal 2 MB.</p>
+                        </div>
+
+                        <!-- Textarea Fields: Full Span -->
                         <div class="col-span-1 md:col-span-2">
                             <label for="alamat" class="block text-sm font-bold text-slate-700 mb-2">Alamat Perusahaan
                                 (Optional)</label>
-                            <textarea id="alamat" name="alamat" rows="3"
+                            <textarea id="alamat" name="alamat" rows="2"
                                 class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-secondary focus:border-secondary transition-colors text-slate-700"
                                 placeholder="Alamat lengkap...">{{ old('alamat') }}</textarea>
                         </div>
@@ -96,28 +146,13 @@
                                 placeholder="Jelaskan kebutuhan secara detail...">{{ old('deskripsi') }}</textarea>
                         </div>
 
-                        <div class="col-span-1 md:col-span-2">
-                            <label for="file" class="block text-sm font-bold text-slate-700 mb-2">File Lampiran
-                                (Opsional, PDF/Word/Image)</label>
-                            <div class="flex items-center gap-4">
-                                <input type="file" id="file" name="file"
-                                    accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" @change="handleFile"
-                                    class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-secondary focus:border-secondary transition-colors text-slate-700 text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/5 file:text-primary hover:file:bg-primary/10">
-
-                                <a x-show="fileUrl" :href="fileUrl" target="_blank"
-                                    class="flex-shrink-0 px-4 py-3 bg-primary hover:bg-primary-light text-white rounded-xl font-bold transition-colors text-sm flex items-center gap-2">
-                                    <i class="fa-solid fa-eye"></i> Lihat File
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="col-span-1 md:col-span-2">
+                        {{-- <div class="col-span-1 md:col-span-2">
                             <label for="catatan" class="block text-sm font-bold text-slate-700 mb-2">Catatan Tambahan
                                 (Optional)</label>
-                            <textarea id="catatan" name="catatan" rows="3"
+                            <textarea id="catatan" name="catatan" rows="2"
                                 class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-secondary focus:border-secondary transition-colors text-slate-700"
                                 placeholder="Catatan ekstra...">{{ old('catatan') }}</textarea>
-                        </div>
+                        </div> --}}
                     </div>
 
                     <div class="border-t border-slate-100 pt-6 mt-8 flex justify-end gap-4">
