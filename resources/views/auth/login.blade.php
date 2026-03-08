@@ -2,7 +2,8 @@
     <x-slot name="title">Login</x-slot>
 
     <!-- Hero Section -->
-    <section class="relative bg-primary pt-32 pb-24 sm:pt-40 sm:pb-32 overflow-hidden isolate border-b-2 border-slate-100">
+    <section
+        class="relative bg-primary pt-32 pb-24 sm:pt-40 sm:pb-32 overflow-hidden isolate border-b-2 border-slate-100">
         <div class="absolute inset-0 -z-10 opacity-20"
             style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 32px 32px;"></div>
         <div class="mx-auto max-w-7xl px-6 lg:px-8 text-center relative z-10">
@@ -42,7 +43,7 @@
                 @csrf
                 <div class="space-y-4">
                     <div>
-                        <label for="email" class="block text-sm font-medium text-slate-700">Email Address</label>
+                        <label for="email" class="block text-sm font-medium text-slate-700">Email Perusahaan</label>
                         <input id="email" name="email" type="email" autocomplete="email" required
                             value="{{ old('email') }}"
                             class="mt-1 appearance-none relative block w-full px-4 py-3 border border-slate-300 placeholder-slate-400 text-slate-900 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary focus:border-secondary focus:z-10 sm:text-sm transition-colors"
