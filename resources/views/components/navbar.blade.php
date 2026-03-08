@@ -70,6 +70,13 @@ window.addEventListener('scroll', () => scrolled = window.scrollY > 20)"
         <!-- CTA Button -->
         <div class="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center gap-4">
             @auth
+                <a href="{{ route('profile') }}"
+                    :class="(!scrolled) ? 'bg-white/10 text-white hover:bg-white/20 border border-white/20' :
+                    'text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200'"
+                    class="inline-flex items-center gap-2 text-sm font-semibold leading-6 px-4 py-2.5 rounded-full transition-all shadow-sm hover:shadow transform hover:-translate-y-0.5">
+                    <i class="fa-solid fa-circle-user text-lg"></i>
+                    <span>Profile</span>
+                </a>
                 @if (auth()->user()->hasRole('super-admin') || auth()->id() === 1)
                     <a href="{{ url('/admin') }}"
                         :class="(!scrolled) ? 'bg-white/15 border border-white/20 text-white hover:bg-white/25' :
@@ -138,6 +145,10 @@ window.addEventListener('scroll', () => scrolled = window.scrollY > 20)"
                                     Monitoring
                                 </a>
                             @endif
+                            <a href="{{ route('profile') }}"
+                                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 {{ request()->url() == route('profile') ? 'text-primary bg-slate-50' : 'text-slate-900 hover:bg-slate-50' }}">
+                                Profile Saya
+                            </a>
                         @endauth
                     </div>
                     <div class="py-6 space-y-3">

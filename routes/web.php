@@ -33,6 +33,11 @@ Route::get('/register', [FrontendAuthController::class, 'showRegister'])->name('
 Route::post('/register', [FrontendAuthController::class, 'register'])->name('register.post')->middleware('guest');
 Route::post('/logout', [FrontendAuthController::class, 'logout'])->name('logout')->middleware('auth');
 
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [FrontendAuthController::class, 'showProfile'])->name('profile');
+    Route::post('/profile', [FrontendAuthController::class, 'updateProfile'])->name('profile.update');
+});
+
 // Customer Penawaran & PO (Protected)
 Route::middleware(['auth', 'customer.only'])->group(function () {
     Route::get('/penawaran', [CustomerPenawaranController::class, 'index'])->name('penawaran.index');

@@ -51,6 +51,40 @@ class FrontendAuthController extends Controller
         return view('auth.register');
     }
 
+    public function showProfile()
+    {
+        return view('auth.profile', [
+            'user' => auth()->user()
+        ]);
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $user = auth()->user();
+
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
+            'no_tlpn' => ['required', 'string', 'max:18'],
+            'password' => ['nullable', 'confirmed', Password::defaults()],
+        ]);
+
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'no_tlpn' => $request->no_tlpn,
+        ];
+
+        if ($request->filled('password')) {
+            $data['password'] = Hash::make($request->password);
+        }
+
+        $user->fill($data);
+        $user->save();
+
+        return back()->with('success', 'Profile updated successfully.');
+    }
+
     public function register(Request $request)
     {
         $request->validate([
